@@ -46,3 +46,79 @@ document.querySelectorAll(".view-all").forEach((button) => {
     }
   });
 });
+
+// akash
+document.addEventListener("DOMContentLoaded", () => {
+  const bookCardMain = document.querySelector(".book-card-main");
+  const prevBtn = document.querySelector(".prev-btn");
+  const nextBtn = document.querySelector(".next-btn");
+  const dotsContainer = document.querySelector(".dots-container");
+  const bookCards = document.querySelectorAll(".book-card");
+
+  const totalDots = 3; // Only 3 dots
+  let currentIndex = 0;
+  let cardWidth = bookCards[0].offsetWidth + 14; // Including gap
+
+  // Create exactly 3 dots
+  function createDots() {
+    for (let i = 0; i < totalDots; i++) {
+      let dot = document.createElement("div");
+      dot.classList.add("dot");
+      if (i === 0) dot.classList.add("active"); // First dot is active
+      dot.dataset.index = i; // Assign index to each dot
+      dotsContainer.appendChild(dot);
+    }
+  }
+
+  // Function to update active dot
+  function updateDots() {
+    document
+      .querySelectorAll(".dot")
+      .forEach((dot) => dot.classList.remove("active"));
+    document.querySelectorAll(".dot")[currentIndex].classList.add("active");
+  }
+
+  // Handle button clicks
+  prevBtn.addEventListener("click", () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+    } else {
+      currentIndex = totalDots - 1; // Loop back
+    }
+    updateSlider();
+  });
+
+  nextBtn.addEventListener("click", () => {
+    if (currentIndex < totalDots - 1) {
+      currentIndex++;
+    } else {
+      currentIndex = 0; // Loop back
+    }
+    updateSlider();
+  });
+
+  // Handle dot clicks
+  dotsContainer.addEventListener("click", (e) => {
+    if (e.target.classList.contains("dot")) {
+      currentIndex = parseInt(e.target.dataset.index);
+      updateSlider();
+    }
+  });
+
+  // Update slider position
+  function updateSlider() {
+    let scrollAmount = currentIndex * cardWidth;
+    bookCardMain.scrollTo({
+      left: scrollAmount,
+      behavior: "smooth",
+    });
+    updateDots();
+  }
+
+  createDots(); // Initialize 3 dots
+});
+
+function toggleMenu() {
+  const mobileMenu = document.getElementById("mobileMenu");
+  mobileMenu.classList.toggle("active");
+}
