@@ -261,6 +261,7 @@
   border: none;
   border-radius: 6px;
   margin-top: 40px;
+  cursor: pointer;
 }
 
 .fearured-title {
@@ -577,7 +578,7 @@
   }
 
   .hero-content {
-    background-image: url(/assets/images/Frame\21\\(2\).png);
+    background-image: url(/assets/images/Frame\ 21\ \(2\).png);
     padding: 0 24px;
     height: 695px;
     width: fit-content;
@@ -626,7 +627,7 @@
   .book-slider {
     flex-direction: column-reverse;
     padding: 30px 0;
-    background: url(/assets//images/Frame\21\\(3\).png);
+    background: url(/assets/images/Frame\ 21\ \(3\).png);
     background-size: cover;
     background-repeat: no-repeat;
   }
